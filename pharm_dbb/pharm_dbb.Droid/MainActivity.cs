@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms;
 
 namespace pharm_dbb.Droid
 {
@@ -17,7 +18,7 @@ namespace pharm_dbb.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+              LoadApplication(new App());
             this.ActionBar.SetIcon(Android.Resource.Color.Transparent);
           
         }

@@ -42,40 +42,8 @@ namespace pharm_dbb
 
     public class Contents : ContentPage
     {
-        private ListView listView;
-        private ListView _pharmacylist;
-        public static int iAppear = 0;
-
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
-            var st = "This app is intended for use by Health Care Professionals who prescribe medication. \r\n";
-            st = st + "This application is a decision support software that provides information to enable Healthcare Professionals ";
-            st = st + "to use their knowledge to make clinical decisions.\r\n ";
-            st = st + "The application will not document any decisions made by Healthcare Professionals. The full guidelines on which this summary guidance is based has been ratified by Herts Medicines Management Committee.\r\n ";
-            st = st + "For the full guidelines please see respective CCG websites.";
-            st = st + "It is your responsibility to ensure you have the most up to date version of the app downloaded.";
-
-
-            //   var answer = App.Current.MainPage.DisplayAlert("Disclaimer", st, "I agree");
-
-
-
-            if (iAppear == 0)
-            {
-               await DisplayAlert("Disclaimer", st, "I agree");
-                iAppear = 1;
-            }
-        }
-            
-
-
-        public void refresh()
-        { 
-            //         listView.ItemsSource = _database.GetContents();
-        }
-       
-
+      
+    
 
 
         public Contents()
@@ -86,94 +54,22 @@ namespace pharm_dbb
          
 
             Title = "Antibiotics Guidelines";
-         //   var t= new Label { HorizontalTextAlignment = Xamarin.Forms.TextAlignment.Center, Text = "Antibiotics Guidelines ",   TextColor=Color.FromHex("1760ae"),  Font=Font.SystemFontOfSize(20,FontAttributes.Bold) };
-            var u = new Label { Text = "", TextColor = Color.FromHex("1760ae"), FontSize = 10 };
-
-            //    var u = new Label { Text = "Antibiotics Guidelines" , TextColor = Color.FromHex("1760ae"), FontSize = 10 };
-            //   Title = "Contents";
             NavigationPage.SetHasNavigationBar(this, true);
                
-            //  var pharm = database.GetContents();
-            // BackgroundColor = Color.White;
-            BackgroundColor = Color.FromHex("bdd1f6");
-            var data = new List<GetFrontPage>  {
-              new GetFrontPage (  "Treatment Guidelines","guidelines.png"),
-
-                new GetFrontPage  ( "What's new in this version","whatsnew.png"),
-       //         new GetFrontPage ("About this app","about.png"),
-                   new GetFrontPage ( "Restricted Antibiotics", "restricted.png"),
-               new GetFrontPage (  "Penicillin allergy","penicillin.png" ),
-                 new GetFrontPage ( "Principles of Treatment","principles.png" ),
-                 new GetFrontPage ( "About these guidelines","about_guideline.png" ),
-      //   new GetFrontPage ( "Full (pdf) version of the guidelines","pdf.png" ),
-
-         new GetFrontPage (  "Feedback","Feedback.png" ),
-          //       new GetFrontPage (  "Clostridium difficile infection","cdiff.jpg" ),
-           //      new GetFrontPage (  "CRP testing","CRP.png" ),
-              //    new GetFrontPage (  "Specific Drug Warnings","warning.png" ),
-  //               new GetFrontPage(  "(HCT) Guidance","HCT.png"),
-       //          new GetFrontPage(  "(HCT) Start Smart Then Focus","startsmart.jpg" ),
-       //          new GetFrontPage (  "(HCT) Telephone Prescribing","telephone.jpg" ),
-       //          new GetFrontPage (  "(HCT) IV to oral stepdown","iv.jpg" ),
-       //        new GetFrontPage (  "(HCT) Gentamicin prescribing","gentamicin.jpg" ),
-       //new GetFrontPage (  "(HCT) Gentamicin prescribing","icon.png" ),
-   //            new GetFrontPage (  "School Information","school.png"),
-
-            };
-
-            _pharmacylist = new ListView
-            {
-                BackgroundColor = Color.FromHex("bdd1f6"),
-                
-            SeparatorColor = Color.FromHex("#ddd"),
-            };
-            _pharmacylist.ItemsSource = data;
-            var cell = new DataTemplate(typeof(ImageCell));
-            cell.SetValue(TextCell.TextColorProperty, Color.FromHex("1760ae"));
-          //  cell.SetValue(TextCell.TextProperty, );
-
-            cell.SetBinding(TextCell.TextProperty, "Name");
-            cell.SetBinding(ImageCell.ImageSourceProperty, "Image");
-            _pharmacylist.ItemTemplate = cell;
-            // _pharmacylist.ItemTemplate = new DataTemplate(typeof(ImageCell));
-            // _pharmacylist.ItemTemplate.SetBinding(ImageCell.TextProperty, "Name");
-            // _pharmacylist.ItemTemplate.SetBinding(ImageCell.ImageSourceProperty, "Image");
-            // _pharmacylist.SetValue(TextCell.TextColorProperty, Color.White);
-          //  _pharmacylist.HeightRequest = 500;
-            _pharmacylist.RowHeight =61;
-
-            var a = new StackLayout
-            {
-                Orientation = StackOrientation.Vertical,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-
-                //  Padding = new Thickness (5, 5, 5, 5), 
-            };
+            BackgroundColor = Color.White;
+    
             if (Device.OS == TargetPlatform.Windows)
             {
 
-                //  Padding = new Thickness (5, 5, 5, 5), 
-                a.Children.Add(s);
-        //        a.Children.Add(t);
-                a.Children.Add(u);
                 NavigationPage.SetHasNavigationBar(this, false);
                 }
             else
             {
-         //       a.Children.Add(t);
-                a.Children.Add(u);
-
+    
 
             }
 
-
-
-            //   var p = new StackLayout
-            //   {
-            //       Padding = 5,
-            //       Children = { title }
-            //   };
-
+            
 
 
             var logo = new StackLayout
@@ -205,113 +101,55 @@ namespace pharm_dbb
 
             };
 
-            var k = new StackLayout
+            var i = new Image
             {
-                BackgroundColor = Color.FromHex("bdd1f6"),
-                Padding = 5,
-                //  BackgroundColor = Color.White,
-                Children = {a,
-                    _pharmacylist,logo
 
-                }
+                    BackgroundColor =Color.White,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                HeightRequest = 80,
+                //   WidthRequest=90,
+                //               Aspect = Aspect.AspectFit,//.AspectFit//.Fill  
+                Source = ImageSource.FromFile("icon.png")
             };
 
-            Content = k;
-            
 
 
 
+            var browser = new WebView();
+            var htmlSource = new HtmlWebViewSource();
+            string st = "<HTML><BODY style='text-align:center'> This version of the Herts Antibiotics Guidelines app is: <br/><br/><b>OUT OF DATE</b> <br/><br/>and no longer supported on this store.<br/>";
 
+            if (Device.OS == TargetPlatform.Android)
+            {
 
-            _pharmacylist.ItemSelected += (sender, e) => {
+                st = st + "<br/>Please download the latest version from the <a href='https://play.google.com/store/apps/details?id=herts.antibiotics'> HBL ICT Services store </a>";
+            }
 
+            if (Device.OS == TargetPlatform.Windows)
+            {
 
-                if (e.SelectedItem == null) return;
-                var user = (GetFrontPage)e.SelectedItem  ;
-                if (user.Name == "What's new in this version")
-                {
-                    var tg = new whats_new();
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "Feedback")
-                {
-                    var tg = new feedback();
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
+                st = st + "<br/><center>Please download the latest version from the <a href='https://www.microsoft.com/en-gb/store/p/herts-antibiotics-guidelines/9pdvp723fqc5?rtc=1'> HBL ICT Services store </a> ";
+            }
+            st = st + "or search for <b>herts antibiotics</b> on the store.";
+            st = st + "<br/>The new version of the guideline is updated to include the latest guidance for the management of";
+            st = st + "<br/>Urinary Tract Infections";
+            st = st + "<br/><br/>We are very keen to hear your feedback so that we can continually develop the Herts Antibiotics Guidelines. If you could leave some feedback on the app store we would be very grateful.</CENTER></BODY></HTML>";
 
-                }
-                if (user.Name == "Treatment Guidelines")
-                {
-                    // var nav= new NavigationPage(new pharmacy(database));
-                    //       var nav= new NavigationPage(new area_page(database));
-
-                    var tg = new area_page();
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "Restricted Antibiotics")
-                {
-                    var tg = new newpage(1);
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-
-
-                if (user.Name == "About these guidelines")
-                {
-
-                    var tg = new about_guideline();
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "Principles of Treatment")
-                {
-                    var tg = new newpage(2);
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "Educational Resources")
-                {
-                    var tg = new newpage( 3);
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "Full (pdf) version of the guidelines")
-                {
-                    var tg = new pdf();
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-
-
-                }
-
-
-                if (user.Name == "Penicillin allergy")
-                {
-                    var tg = new penicillin();
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "CRP testing")
-                {
-                    var tg = new newpage( 5);
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "School Information")
-                {
-                    var tg = new newpage(6) ;
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                if (user.Name == "Specific Drug Warnings")
-                {
-            //        var tg = new specific_warnings();
-              //      Navigation.PushAsync(tg);
-                }
-                if (user.Name == "(HCT) Guidance")
-                {
-                    var tg = new hct_page();
-                    Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(tg));
-                }
-                
-
-       
-                if (e.SelectedItem == null) return; // don't do anything if we just de-selected the row
-                                                    // do something with e.SelectedItem
-                ((ListView)sender).SelectedItem = null; // de-select the row
-
+            htmlSource.Html = st;
+            browser.HeightRequest = 500;
+          //  browser.BackgroundColor = Color.Blue;
+            browser.Source = htmlSource;
+            var layout = new StackLayout
+            {
+              Children = { logo, i,browser }
             };
+                Content = new ScrollView { Content = layout };
+
+
+
+
+
         }
     }
 }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "128407733670",
+    "firebase_url": "https://herts-antibiotics.firebaseio.com",
+    "project_id": "herts-antibiotics",
+    "storage_bucket": "herts-antibiotics.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128407733670:android:22f7402667205b7b",
+        "android_client_info": {
+          "package_name": "pharmacy.pharmacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128407733670-j7ggub8g52vejmlo91cefg9eplcc5aja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAts9c4e1Pkpes0FPm320la7Mgn2_tJcjQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

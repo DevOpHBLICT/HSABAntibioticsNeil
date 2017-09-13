@@ -414,6 +414,7 @@
     <AndroidAsset Include="Assets\c\guidelines.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidAsset>
+    <None Include="google-services.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

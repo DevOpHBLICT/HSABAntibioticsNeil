@@ -42,6 +42,7 @@
     <Compile Include="comments.cs" />
     <Compile Include="contacts.cs" />
     <Compile Include="content.cs" />
+    <Compile Include="C.cs" />
     <Compile Include="CustomWebView.cs" />
     <Compile Include="penicillin.cs" />
     <Compile Include="feedback.cs" />
